@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-demo
+  labels:
+    app: sample-demo
+  namespace: sample-demo
+  annotations:
+    monitoring: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-demo
+  template:
+    metadata:
+      labels:
+        app: sample-demo
+    spec:
+      containers:
+      - image: swathithangaraj/sample-demo:v1
+        name: sample-demo
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+          requests: 
+            memory: "1Gi"
+            cpu: "500m"
+       
